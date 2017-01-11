@@ -1,7 +1,7 @@
 import binascii
 
 def main():
-    print(hashSHA1(""))
+    print(hashSHA1("A Test"))
 
 def hashSHA1(s):
     a, b, c, d, e = "", "", "", "", ""
@@ -14,8 +14,9 @@ def hashSHA1(s):
     mBlocks = getChunks(complementM(s), 512)
     m = {}
     for i in range(1, len(mBlocks) + 1):
+        chunks = getChunks(mBlocks[i - 1], 32)
         for k in range(16):
-            m[str(i) + ";" + str(k)] = getChunks(mBlocks[i - 1], 32)[k]
+            m[str(i) + ";" + str(k)] = chunks[k]
     T = ""
     for i in range(1, len(mBlocks) + 1):
         w = []
